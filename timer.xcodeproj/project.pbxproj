@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B028E7FC21F6B46E0049668C /* BBProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = B028E7FB21F6B46E0049668C /* BBProxy.m */; };
 		B084A34021F56CC400FF8AB1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B084A33F21F56CC400FF8AB1 /* AppDelegate.m */; };
 		B084A34321F56CC400FF8AB1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B084A34221F56CC400FF8AB1 /* ViewController.m */; };
 		B084A34621F56CC400FF8AB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B084A34421F56CC400FF8AB1 /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B028E7FA21F6B46E0049668C /* BBProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBProxy.h; sourceTree = "<group>"; };
+		B028E7FB21F6B46E0049668C /* BBProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBProxy.m; sourceTree = "<group>"; };
 		B084A33B21F56CC400FF8AB1 /* timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B084A33E21F56CC400FF8AB1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B084A33F21F56CC400FF8AB1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,6 +68,8 @@
 				B084A33F21F56CC400FF8AB1 /* AppDelegate.m */,
 				B084A34121F56CC400FF8AB1 /* ViewController.h */,
 				B084A34221F56CC400FF8AB1 /* ViewController.m */,
+				B028E7FA21F6B46E0049668C /* BBProxy.h */,
+				B028E7FB21F6B46E0049668C /* BBProxy.m */,
 				B084A35421F56CD300FF8AB1 /* BBTimerManager.h */,
 				B084A35521F56CD300FF8AB1 /* BBTimerManager.m */,
 				B084A34421F56CC400FF8AB1 /* Main.storyboard */,
@@ -149,6 +154,7 @@
 				B084A34321F56CC400FF8AB1 /* ViewController.m in Sources */,
 				B084A34E21F56CC500FF8AB1 /* main.m in Sources */,
 				B084A34021F56CC400FF8AB1 /* AppDelegate.m in Sources */,
+				B028E7FC21F6B46E0049668C /* BBProxy.m in Sources */,
 				B084A35621F56CD300FF8AB1 /* BBTimerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

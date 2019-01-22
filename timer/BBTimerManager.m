@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBProxy.h"
 #import "BBTimerManager.h"
 
 @interface BBTimerManager()
@@ -32,9 +33,11 @@
 - (void)count:(double)duration
      callback:(void(^)(void))callback{
     NSAssert(callback, @"请设置回调");
+    callback();
     self.countBlock = callback;
+    BBProxy *proxy  = [BBProxy proxyWithTarget:self];
     self.timer = [NSTimer timerWithTimeInterval:duration
-                                         target:self
+                                         target:proxy
                                        selector:@selector(timeCount)
                                        userInfo:nil
                                         repeats:YES];
@@ -47,17 +50,18 @@
             step:(double)step
         callback:(void(^)(double index))callback{
     NSAssert(callback, @"请设置回调");
+    callback(from);
     self.count = from;
     self.step  = step;
-    self.callback = callback;
+    self.callback  = callback;
+    BBProxy *proxy = [BBProxy proxyWithTarget:self];
     self.timer = [NSTimer timerWithTimeInterval:duration
-                                         target:self
+                                         target:proxy
                                        selector:@selector(increase)
                                        userInfo:nil
                                         repeats:YES];
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [loop addTimer:self.timer forMode:NSRunLoopCommonModes];
-    callback(from);
 }
 
 - (void)decrease:(double)from
@@ -65,42 +69,45 @@
             step:(double)step
         callback:(void(^)(double index))callback{
     NSAssert(callback, @"请设置回调");
+    callback(from);
     self.count = from;
     self.step  = step;
-    self.callback = callback;
+    self.callback  = callback;
+    BBProxy *proxy = [BBProxy proxyWithTarget:self];
     self.timer = [NSTimer timerWithTimeInterval:duration
-                                         target:self
+                                         target:proxy
                                        selector:@selector(decrease)
                                        userInfo:nil
                                         repeats:YES];
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [loop addTimer:self.timer forMode:NSRunLoopCommonModes];
-    callback(from);
 }
 
 - (void)displaylinkWithFrame:(NSInteger)frame
                     callback:(void (^)(void))callback{
     NSAssert(callback, @"请设置回调");
+    callback();
     self.countBlock = callback;
-    self.link = [CADisplayLink displayLinkWithTarget:self
+    BBProxy *proxy  = [BBProxy proxyWithTarget:self];
+    self.link = [CADisplayLink displayLinkWithTarget:proxy
                                             selector:@selector(timeCount)];
     [self displaylinkFrame:frame];
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [self.link addToRunLoop:loop forMode:NSRunLoopCommonModes];
-    callback();
 }
 
-//同上，这里的fram指一秒内执行几次回调
+//同上，这里的frame指一秒内执行几次回调
 - (void)displaylinkWithDuration:(NSInteger)frame
                        callback:(void (^)(void))callback{
     NSAssert(callback, @"请设置回调");
+    callback();
     self.countBlock = callback;
-    self.link = [CADisplayLink displayLinkWithTarget:self
+    BBProxy *proxy  = [BBProxy proxyWithTarget:self];
+    self.link = [CADisplayLink displayLinkWithTarget:proxy
                                             selector:@selector(timeCount)];
     [self preferredFramesPerSecond:frame];
     NSRunLoop *loop = [NSRunLoop currentRunLoop];
     [self.link addToRunLoop:loop forMode:NSRunLoopCommonModes];
-    callback();
 }
 
 - (void)timerMode:(NSRunLoopMode)mode{
@@ -165,6 +172,7 @@
 }
 
 - (void)dealloc{
+    [self destory];
     NSLog(@"%@销毁了",[self class]);
 }
 
